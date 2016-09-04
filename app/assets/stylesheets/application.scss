@@ -1,0 +1,17 @@
+// Graphical variables
+@import "config/variables";
+@import "config/bootstrap_variables";
+
+// External libraries
+@import "bootstrap-sprockets";
+@import "bootstrap";
+@import "font-awesome-sprockets";
+@import "font-awesome";
+
+// Template libraries
+@import "scss/pages-icons";
+@import "scss/pages";
+@import "scss/pace-theme-flash";
+@import "scss/jquery.scrollbar";
+@import "scss/switchery.min";
+@import "pages-asset-pipeline";
