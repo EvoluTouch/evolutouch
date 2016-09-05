@@ -11,7 +11,6 @@
 //= require js/jquery-actual/jquery.actual.min
 //= require js/jquery-scrollbar/jquery.scrollbar.min
 //= require js/pages
-//= require js/google_map
 //= require js/underscore
 //= require gmaps/google
 // require_tree .
