@@ -2,32 +2,70 @@
 
   <div class="row">
 
-    <div class="col-md-6 m-b-10">
+    <div class="col-md-6">
 
-      <div class="widget-13 panel no-border  no-margin widget-loader-circle">
+      <div class="panel panel-default">
 
-        <div class="container-sm-height no-overflow">
-          <div class="row row-sm-height">
+        <div class="panel-body">
 
-            <%= simple_form_for @client do |f| %>
+          <h5>Nouveau Client</h5>
 
-              <%= f.input :name %>
-              <%= f.input :firstname %>
-              <%= f.input :address %>
-              <%= f.button :submit, "Ajouter", class: "btn btn-primary" %>
+          <%= simple_form_for @client do |f| %>
 
-            <% end %>
+            <div class="geo">
 
-          </div>
+              <div class="form-group form-group-default required ">
+                <%= f.label :firstname, 'Prénom' %>
+                <%= f.text_field :firstname, class:"form-control" %>
+              </div>
+
+              <div class="form-group form-group-default required ">
+                <%= f.label :name, 'Nom' %>
+                <%= f.text_field :name, class:"form-control" %>
+              </div>
+
+              <div class="form-group form-group-default required ">
+                <%= f.label :address, 'Adresse' %>
+                <%= f.text_field :address, class:"form-control", id: "geocomplete" %>
+              </div>
+
+              <div class="form-group form-group-default required ">
+                <%= f.label :email, 'Email' %>
+                <%= f.text_field :email, class:"form-control", id: "geocomplete" %>
+              </div>
+
+              <%= f.input :streetnumber, :as => :hidden, input_html: { data: { geo: "street_number" } }  %>
+              <%= f.input :route, :as => :hidden, input_html: { data: { geo: "route" } }  %>
+              <%= f.input :zipcode, :as => :hidden, input_html: { data: { geo: "postal_code" } }  %>
+              <%= f.input :city, :as => :hidden, input_html: { data: { geo: "locality" } }  %>
+              <%= f.input :sublocality, :as => :hidden, input_html: { data: { geo: "sublocality" } }  %>
+              <%= f.input :state, :as => :hidden, input_html: { data: { geo: "state" } }  %>
+              <%= f.input :address, :as => :hidden, input_html: { data: { geo: "formatted_address" } }  %>
+              <%= f.input :country, :as => :hidden, input_html: { data: { geo: "country" } }  %>
+              <%= f.input :countryshort, :as => :hidden, input_html: { data: { geo: "country_short" } }  %>
+              <%= f.input :latitude, :as => :hidden, input_html: { data: { geo: "lat" } }  %>
+              <%= f.input :longitude, :as => :hidden, input_html: { data: { geo: "lng" } }  %>
+              <%= f.button :submit, "Créer", class: "btn btn-success pull-right" %>
+
+            </div>
+
+          <% end %>
+
         </div>
+
       </div>
 
     </div>
 
-    <div class="col-md-6 col-xlg-4">
-
+    <div class="col-md-6">
     </div>
 
   </div>
 
 </div>
+
+<% content_for :scripts do %>
+  <script>
+    $("#geocomplete").geocomplete({ details: ".geo", detailsAttribute: "data-geo" });
+  </script>
+<% end %>

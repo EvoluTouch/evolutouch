@@ -80,6 +80,11 @@
     background-image: image-url("widget/robot.png");
   }
 }
+.widget-clientwebsite {
+  &:after {
+    background-image: image-url("widget/clientwebsite.png");
+  }
+}
 .widget-3 {
   a{text-decoration: none;
   }

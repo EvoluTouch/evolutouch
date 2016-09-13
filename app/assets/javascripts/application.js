@@ -13,4 +13,5 @@
 //= require js/pages
 //= require js/underscore
 //= require gmaps/google
+//= require js/jquery-geocomplete/jquery.geocomplete.min
 // require_tree .

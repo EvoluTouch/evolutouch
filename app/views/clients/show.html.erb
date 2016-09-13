@@ -34,8 +34,9 @@
               <div class="panel-body">
                 <p class="hint-text all-caps font-montserrat small no-margin ">Client</p>
                 <p class="all-caps font-montserrat  no-margin text-success "><%= @client.firstname + " " + @client.name %></p>
-                <p class="all-caps font-montserrat  no-margin text-success "><%= @client.address %></p>
+                <p class="all-caps font-montserrat  no-margin text-success "><%= @client.streetnumber %>, <%= @client.route %></p>
                 <p class="all-caps font-montserrat  no-margin text-success "><%= @client.zipcode %> <%= @client.city %></p>
+                <p class="all-caps font-montserrat  no-margin text-success "><%= @client.state %><%= @client.country %></p>
                 <br>
                 <p class="hint-text all-caps font-montserrat small no-margin ">Coordonnées</p>
                 <p class="all-caps font-montserrat  no-margin text-warning "><%= @client.email %></p>
@@ -65,7 +66,6 @@
 </div>
 
 <% content_for :scripts do %>
-  <script src="//maps.google.com/maps/api/js?v=3&key=AIzaSyALZ4qUpLmReM7jwuaBSK6J0uPCOyKrrPQ"></script>
   <script src="//cdn.rawgit.com/mahnunchik/markerclustererplus/master/dist/markerclusterer.min.js"></script>
   <script type="text/javascript">
     var mapStyle = [{"featureType":"administrative.locality","elementType":"all","stylers":[{"hue":"#2c2e33"},{"saturation":7},{"lightness":19},{"visibility":"on"}]},{"featureType":"landscape","elementType":"all","stylers":[{"hue":"#ffffff"},{"saturation":-100},{"lightness":100},{"visibility":"simplified"}]},{"featureType":"poi","elementType":"all","stylers":[{"hue":"#ffffff"},{"saturation":-100},{"lightness":100},{"visibility":"off"}]},{"featureType":"road","elementType":"geometry","stylers":[{"hue":"#bbc0c4"},{"saturation":-93},{"lightness":31},{"visibility":"simplified"}]},{"featureType":"road","elementType":"labels","stylers":[{"hue":"#bbc0c4"},{"saturation":-93},{"lightness":31},{"visibility":"on"}]},{"featureType":"road.arterial","elementType":"labels","stylers":[{"hue":"#bbc0c4"},{"saturation":-93},{"lightness":-2},{"visibility":"simplified"}]},{"featureType":"road.local","elementType":"geometry","stylers":[{"hue":"#e9ebed"},{"saturation":-90},{"lightness":-8},{"visibility":"simplified"}]},{"featureType":"transit","elementType":"all","stylers":[{"hue":"#e9ebed"},{"saturation":10},{"lightness":69},{"visibility":"on"}]},{"featureType":"water","elementType":"all","stylers":[{"hue":"#e9ebed"},{"saturation":-78},{"lightness":67},{"visibility":"simplified"}]}];
