@@ -1,3 +1,22 @@
+<!-- START JUMBOTRON -->
+<div class="jumbotron" data-pages="parallax">
+  <div class="container-fluid container-fixed-lg sm-p-l-20 sm-p-r-20">
+    <div class="row">
+      <div class="col-md-12">
+        <div class="panel-body">
+          <%= link_to(edit_client_path(@client), class: "btn btn-primary btn-cons", type: "button") do %>
+            <i class="fa fa-pencil"></i> <span class="bold">Modifier</span>
+          <% end %>
+          <%= link_to(client_path(@client), method: :delete, class: "btn btn-danger btn-cons", type: "button") do %>
+            <i class="fa fa-trash"></i> <span class="bold">Supprimer</span>
+          <% end %>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- END JUMBOTRON -->
+
 <div class="container-fluid padding-25 sm-padding-10">
 
   <div class="row">
@@ -6,15 +25,6 @@
 
       <div class="widget-13 panel no-border  no-margin widget-loader-circle">
 
-        <div class="panel-heading pull-up top-right ">
-          <div class="panel-controls">
-            <ul>
-              <li><a href="#" class="portlet-refresh text-black" data-toggle="refresh"><i class="portlet-icon portlet-icon-refresh"></i></a>
-              </li>
-            </ul>
-          </div>
-        </div>
-
         <div class="container-sm-height no-overflow">
           <div class="row row-sm-height">
             <div class="col-sm-6 col-lg-6 col-xlg-6 col-sm-height col-top no-padding">
@@ -22,24 +32,23 @@
                 <div class="panel-title">Informations Client</div>
               </div>
               <div class="panel-body">
-                <p class="hint-text all-caps font-montserrat small no-margin ">Client<i class="fa fa-pencil pull-right"></i></p>
-                <p class="all-caps font-montserrat  no-margin text-success "><%= @clients.firstname + " " + @clients.name %></p>
-                <p class="all-caps font-montserrat  no-margin text-success "><%= @clients.address %></p>
-                <p class="all-caps font-montserrat  no-margin text-success "><%= @clients.zipcode + " " + @clients.city %></p>
+                <p class="hint-text all-caps font-montserrat small no-margin ">Client</p>
+                <p class="all-caps font-montserrat  no-margin text-success "><%= @client.firstname + " " + @client.name %></p>
+                <p class="all-caps font-montserrat  no-margin text-success "><%= @client.address %></p>
+                <p class="all-caps font-montserrat  no-margin text-success "><%= @client.zipcode %> <%= @client.city %></p>
                 <br>
-                <p class="hint-text all-caps font-montserrat small no-margin ">Coordonnées<i class="fa fa-pencil pull-right"></i></p>
-                <p class="all-caps font-montserrat  no-margin text-warning ">mails</p>
-                <p class="all-caps font-montserrat  no-margin text-warning ">téléphone</p>
+                <p class="hint-text all-caps font-montserrat small no-margin ">Coordonnées</p>
+                <p class="all-caps font-montserrat  no-margin text-warning "><%= @client.email %></p>
+                <p class="all-caps font-montserrat  no-margin text-warning ">Téléphone 1</p>
+                <p class="all-caps font-montserrat  no-margin text-warning ">Téléphone 2</p>
                 <br>
-                <p class="hint-text all-caps font-montserrat small no-margin ">Informations complémentaires<i class="fa fa-pencil pull-right"></i></p>
+                <p class="hint-text all-caps font-montserrat small no-margin ">Informations complémentaires</p>
                 <p class="all-caps font-montserrat  no-margin text-success ">Date de naissance</p>
                 <p class="all-caps font-montserrat  no-margin text-success ">Date de mariage</p>
               </div>
             </div>
             <div class="col-sm-6 col-lg-6 col-xlg-6 col-sm-height col-top no-padding relative">
-
                 <div id="map" style='width: 100%; height: 400px;'></div>
-
             </div>
           </div>
         </div>
@@ -54,5 +63,42 @@
   </div>
 
 </div>
+
+<% content_for :scripts do %>
+  <script src="//maps.google.com/maps/api/js?v=3&key=AIzaSyALZ4qUpLmReM7jwuaBSK6J0uPCOyKrrPQ"></script>
+  <script src="//cdn.rawgit.com/mahnunchik/markerclustererplus/master/dist/markerclusterer.min.js"></script>
+  <script type="text/javascript">
+    var mapStyle = [{"featureType":"administrative.locality","elementType":"all","stylers":[{"hue":"#2c2e33"},{"saturation":7},{"lightness":19},{"visibility":"on"}]},{"featureType":"landscape","elementType":"all","stylers":[{"hue":"#ffffff"},{"saturation":-100},{"lightness":100},{"visibility":"simplified"}]},{"featureType":"poi","elementType":"all","stylers":[{"hue":"#ffffff"},{"saturation":-100},{"lightness":100},{"visibility":"off"}]},{"featureType":"road","elementType":"geometry","stylers":[{"hue":"#bbc0c4"},{"saturation":-93},{"lightness":31},{"visibility":"simplified"}]},{"featureType":"road","elementType":"labels","stylers":[{"hue":"#bbc0c4"},{"saturation":-93},{"lightness":31},{"visibility":"on"}]},{"featureType":"road.arterial","elementType":"labels","stylers":[{"hue":"#bbc0c4"},{"saturation":-93},{"lightness":-2},{"visibility":"simplified"}]},{"featureType":"road.local","elementType":"geometry","stylers":[{"hue":"#e9ebed"},{"saturation":-90},{"lightness":-8},{"visibility":"simplified"}]},{"featureType":"transit","elementType":"all","stylers":[{"hue":"#e9ebed"},{"saturation":10},{"lightness":69},{"visibility":"on"}]},{"featureType":"water","elementType":"all","stylers":[{"hue":"#e9ebed"},{"saturation":-78},{"lightness":67},{"visibility":"simplified"}]}];
+    var handler = Gmaps.build('Google');
+    handler.buildMap({
+        internal: {id: 'map'},
+        provider: {
+          disableDefaultUI: true,
+          zoom:      13,
+          center:    new google.maps.LatLng(<%= @client.latitude %>,<%= @client.longitude %>),
+          mapTypeId: google.maps.MapTypeId.ROADMAP,
+          styles:    mapStyle,
+          picture: {
+      url: "https://addons.cdn.mozilla.net/img/uploads/addon_icons/13/13028-64.png",
+      width:  36,
+      height: 36
+    }
+        }
+      },
+      function(){
+        markers = handler.addMarkers([
+  {
+    lat: <%= @client.latitude %>,
+    lng: <%= @client.longitude %>,
+    infowindow: "hello!"
+  }
+  ]);
+      }
+    );
+
+  </script>
+<% end %>
+
+
 
 

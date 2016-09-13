@@ -16,11 +16,11 @@
 
   <div class="p-l-50 m-l-20 p-r-50 m-r-20 p-t-50 m-t-30 sm-p-l-15 sm-p-r-15 sm-p-t-40">
 
-    <img src="<%= image_path "logo.png" %>" alt="logo" data-src="<%= image_path "logo.png" %>" data-src-retina="<%= image_path "logo_2x.png" %>" width="78" height="22">
+    <img src="<%= image_path "logo.png" %>" alt="logo" data-src="<%= image_path "logo.png" %>" data-src-retina="<%= image_path "logo_2x.png" %>" width="300" height="40">
 
     <p><%= render "shared/flashes" %></p>
 
-    <p class="p-t-35">Connexion à EvoluTouch</p>
+    <p class="p-t-35">Connexion</p>
 
     <%= simple_form_for(resource, as: resource_name, url: session_path(resource_name), class: "p-t-15") do |f| %>
 

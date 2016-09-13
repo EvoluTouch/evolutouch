@@ -1,0 +1,32 @@
+<div class="container-fluid padding-25 sm-padding-10">
+
+  <div class="row">
+
+    <div class="col-md-6 m-b-10">
+
+      <div class="widget-13 panel no-border  no-margin widget-loader-circle">
+
+        <div class="container-sm-height no-overflow">
+          <div class="row row-sm-height">
+
+            <%= simple_form_for @client do |f| %>
+              <%= f.input :name %>
+              <%= f.input :firstname %>
+              <%= f.input :address %>
+              <%= f.button :submit, "Ajouter", class: "btn btn-primary" %>
+
+            <% end %>
+
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+    <div class="col-md-6 col-xlg-4">
+
+    </div>
+
+  </div>
+
+</div>

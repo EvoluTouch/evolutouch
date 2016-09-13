@@ -1,56 +1,78 @@
-<!-- START CONTAINER FLUID -->
-<div class="container-fluid container-fixed-lg bg-white">
-  <!-- START PANEL -->
-  <div class="panel panel-transparent">
-    <div class="panel-heading">
-      <div class="panel-title">Liste des clients
-      </div>
-      <div class="pull-right">
-        <div class="col-xs-12">
-          <input type="text" id="search-table" class="form-control pull-right" placeholder="Search">
+<!-- START JUMBOTRON -->
+<div class="jumbotron" data-pages="parallax">
+  <div class="container-fluid container-fixed-lg sm-p-l-20 sm-p-r-20">
+    <div class="row">
+      <div class="col-md-12">
+        <div class="panel-body">
+          <%= link_to(new_client_path, class: "btn btn-success btn-cons", type: "button") do %>
+            <i class="fa fa-user-plus"></i> <span class="bold">Nouveau</span>
+          <% end %>
+          </a>
         </div>
       </div>
-      <div class="clearfix"></div>
-    </div>
-    <div class="panel-body">
-      <table class="table table-hover demo-table-search" id="tableWithSearch">
-        <thead>
-          <tr>
-            <th>Preon</th>
-            <th>nom</th>
-            <th>address</th>
-            <th>zipcode</th>
-            <th>ville</th>
-            <th>detail</th>
-          </tr>
-        </thead>
-        <tbody>
-            <% @clients.each do |client| %>
-            <tr>
-              <td class="v-align-middle semi-bold">
-                <p><%= client.firstname %></p>
-              </td>
-              <td class="v-align-middle">
-                <p><%= client.name %></p>
-              </td>
-              <td class="v-align-middle">
-                <p><%= client.address %></p>
-              </td>
-              <td class="v-align-middle">
-                <p><%= client.zipcode %></p>
-              </td>
-              <td class="v-align-middle">
-                <p><%= client.city %></p>
-              </td>
-              <td class="v-align-middle">
-                <%= link_to "voir", client_path(client) %>
-              </td>
-            </tr>
-            <% end %>
-        </tbody>
-      </table>
     </div>
   </div>
-  <!-- END PANEL -->
 </div>
-<!-- END CONTAINER FLUID -->
+<!-- END JUMBOTRON -->
+<div class="container-fluid sm-padding-10">
+  <div class="row">
+    <div class="col-md-12">
+      <div class="container-fixed-lg bg-white">
+        <div class="panel">
+          <div class="panel-heading">
+            <div class="panel-title">Liste des Clients (<%= @countclients %>)
+            </div>
+            <div class="pull-right">
+              <div class="col-xs-12">
+                <%= search_form_for @q do |f| %>
+                  <%= f.search_field :name_or_firstname_cont, class: "form-control", placeholder: "Recherche" %>
+                <% end %>
+              </div>
+            </div>
+            <div class="clearfix">
+            </div>
+          </div>
+          <div class="panel-body">
+            <div id="tableWithExportOptions_wrapper" class="dataTables_wrapper form-inline no-footer">
+              <div class="table-responsive">
+                <table class="table table-striped dataTable no-footer" id="tableWithExportOptions" role="grid" aria-describedby="tableWithExportOptions_info">
+                  <thead>
+                    <tr>
+                      <th><%= sort_link(@q, :name, 'Nom', default_order: :desc) %></th>
+                      <th><%= sort_link(@q, :firstname, 'Prénom') %></th>
+                      <th><%= sort_link(@q, :zipcode, 'Code Postal') %></th>
+                      <th><%= sort_link(@q, :city, 'Ville') %></th>
+                      <th><%= sort_link(@q, :email, 'Email') %></th>
+                      <th>Visualiser</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <% @clients.each do |client| %>
+                      <tr>
+                        <td><%= client.name %></td>
+                        <td><%= client.firstname %></td>
+                        <td><%= client.zipcode %></td>
+                        <td><%= client.city %></td>
+                        <td><%= client.email %></td>
+                        <td>
+                          <%= link_to(client_path(client.id), class: "btn btn-warning btn-cons", type: "button") do %>
+                            <i class="fa fa-eye"></i> <span class="bold">Voir</span>
+                          <% end %>
+                        </td>
+                      </tr>
+                    <% end %>
+                  </tbody>
+                </table>
+              </div>
+              <div class="row">
+                <%= paginate @clients %>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+

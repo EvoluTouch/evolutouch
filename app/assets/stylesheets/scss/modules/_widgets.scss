@@ -65,9 +65,19 @@
     background: rgba(255, 255, 255, .3);
   }
 }
-.widget-2 {
+.widget-client {
   &:after {
-    background-image: url("#{$assets-url}/img/social/person-cropped.jpg");
+    background-image: image-url("widget/client.png");
+  }
+}
+.widget-emailing {
+  &:after {
+    background-image: image-url("widget/emailing.png");
+  }
+}
+.widget-robot {
+  &:after {
+    background-image: image-url("widget/robot.png");
   }
 }
 .widget-3 {
@@ -198,7 +208,7 @@
     margin-right: -4px;
   }
   .widget-11-table{
-    height:380px; 
+    height:380px;
     tr td:first-child{
       width: 40%;
     }
