@@ -1,1 +1,1 @@
-ENV['ROO_TMP'] = "tmp/"
+ENV['ROO_TMP'] = "./tmp/"
